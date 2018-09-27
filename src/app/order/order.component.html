@@ -1,14 +1,22 @@
-ClientName:
-<select>
-  <option value="select">select</option>
-</select>
-ItemName:
-<select>
-  <option value="select">select</option>
-</select>
+<form [formGroup]="clientForm">
+  <label>Client-Name:</label>
+    <select formControlName="clientControl">
+      <option [ngValue]="client" *ngFor="let client of clientNameList">{{client}}</option>
+    </select>
+</form>
+<form [formGroup]="itemForm">
+  <label>Item-Name:</label>
+    <select formControlName="itemControl">
+      <option [ngValue]="item" *ngFor="let item of itemNameList">{{item}}</option>
+    </select>
+</form>
+
 Quantity:
 <input type="number">
-<button type="button">Add</button>
+<button type="button" (click)="showList()">Add</button>
 <br/>
-<button type="submit">Save</button>
+<button type="submit"(click)="saveDB()">Save</button>
 
+
+    
+ 

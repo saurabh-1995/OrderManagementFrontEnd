@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/client.service';
 import { ItemService } from 'src/app/item.service';
 import { ClientModel } from 'src/app/client-model';
-import { ItemModel } from 'src/app/item-model'; 
+import { ItemModel } from 'src/app/item-model';
+import { FormGroup,FormBuilder } from  '@angular/forms';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -14,7 +15,10 @@ export class OrderComponent implements OnInit {
   public itemList:any=[];
   clientNameList:any=[];
   itemNameList:any=[];
-  constructor(private itemService:ItemService,private clientService:ClientService) { }
+  constructor(private itemform:FormBuilder,private clientform: FormBuilder,private itemService:ItemService,private clientService:ClientService) { }
+
+  clientForm: FormGroup;
+  itemForm:FormGroup;
   ngOnInit() {
     this.clientService.getClient().subscribe(clientdata=>{
       this.clientList=clientdata
@@ -28,9 +32,12 @@ export class OrderComponent implements OnInit {
     err=>{
       console.log(err);
     }
+    this.clientForm=this.clientform.group({
+      clientControl: [this.clientNameList[0]]
+    })
     this.itemService.getItem().subscribe(itemdata=>{
       this.itemList=itemdata
-      console.log("itemList"+JSON.stringify(this.itemList));
+      // console.log("itemList"+JSON.stringify(this.itemList));
       this.itemList.forEach(item => {
         // console.log("item"+JSON.stringify(item));
         
@@ -41,10 +48,14 @@ export class OrderComponent implements OnInit {
     err=>{
       console.log(err);
     }
+    this.itemForm=this.itemform.group({
+      itemControl: [this.itemNameList[0]]
+    })
   }
 
 }
 
-   
+
+
    
     
