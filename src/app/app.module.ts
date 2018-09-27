@@ -7,15 +7,25 @@ import { ClientComponent } from './client/client.component';
 import { OrderComponent } from './order/order.component';
 import { ListComponent } from './list/list.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ClientService} from 'src/app/client.service';
+import { ItemService} from 'src/app/item.service';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '../../node_modules/@angular/common/http';
+
 
 const routes: Routes = [{
   path: '',
-   component: ClientComponent
+   component: ItemComponent
  },
+ {
+  path:'Client',
+  component:ClientComponent,
+},
  {
    path:'Order',
  component: OrderComponent,
- },
+ }
+ 
  
  ];
 
@@ -25,16 +35,18 @@ const routes: Routes = [{
     ItemComponent,
     ClientComponent,
     OrderComponent,
-    ListComponent
+    ListComponent,
+    
   ],
   imports: [
-    
+    HttpModule,
+    HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
     
   ],
-  providers: [ClientComponent,OrderComponent],
+  providers: [ClientService,ItemService],
   bootstrap: [AppComponent]
 })
 

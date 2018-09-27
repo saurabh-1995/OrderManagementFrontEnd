@@ -1,3 +1,40 @@
-<p>
-  item works!
-</p>
+<div class="jumbotron">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 offset-md-3">
+              <h2>Item-Registration</h2>
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                      
+                  <div class="form-group">
+                      <label>ItemName</label>
+                      <input type="text"  formControlName="ItemName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ItemName.errors }" />
+                      <div *ngIf="submitted && f.ItemName.errors" class="invalid-feedback">
+                          <div *ngIf="f.ItemName.errors.required">ItemName is required</div>
+                          <div *ngIf="f.ItemName.errors.maxlength">ItemName should not have more than 100 characters</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label>ItemCategory</label>
+                      <input type="text"  formControlName="ItemCategory" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ItemCategory.errors }" />
+                      <div *ngIf="submitted && f.ItemCategory.errors" class="invalid-feedback">
+                          <div *ngIf="f.ItemCategory.errors.required">ItemCategory is required</div>
+                          
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label>ItemQuantity</label>
+                      <input type="number"  formControlName="ItemQuantity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ItemQuantity.errors }" />
+                      <div *ngIf="submitted && f.ItemQuantity.errors" class="invalid-feedback">
+                          <div *ngIf="f.ItemQuantity.errors.required">ItemQuantity is required</div>
+                          
+                      </div>
+                  </div>
+                  
+                  <div class="form-group">
+                      <button class="btn btn-primary">Register</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
