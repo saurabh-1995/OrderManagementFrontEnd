@@ -11,7 +11,13 @@ import { ClientService} from 'src/app/client.service';
 import { ItemService} from 'src/app/item.service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 
+import { ModalService } from 'src/app/modal.service';
+import { FormsModule } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+// import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 const routes: Routes = [{
   path: '',
@@ -24,7 +30,12 @@ const routes: Routes = [{
  {
    path:'Order',
  component: OrderComponent,
+ },
+ {
+   path:'List',
+   component:ListComponent
  }
+ 
  
  
  ];
@@ -35,19 +46,27 @@ const routes: Routes = [{
     ItemComponent,
     ClientComponent,
     OrderComponent,
+    
     ListComponent,
+    
+    
     
   ],
   imports: [
+    FormsModule,
     HttpModule,
     HttpClientModule,
+    MatDialogModule,
+    // BrowserAnimationsModule,
     BrowserModule,
     ReactiveFormsModule,
+    // [MatButtonModule, MatCheckboxModule],
     RouterModule.forRoot(routes)
     
   ],
-  providers: [ClientService,ItemService],
-  bootstrap: [AppComponent]
+  providers: [ClientService,ItemService,ModalService],
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 
 export class AppModule { }

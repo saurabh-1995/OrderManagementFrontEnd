@@ -20,12 +20,12 @@ export class ClientService {
     var body = JSON.stringify(client);
     console.log(body);
     
-    return this.http.post('https://localhost:44322/api/ClientMasters', body, this.httpOptions);
+    return this.http.post('https://localhost:44335/api/ClientMasters', body, this.httpOptions);
 
   }
   getClient():Observable<any>
   {
-    return this.http.get('https://localhost:44322/api/ClientMasters').pipe(map(data=>data));
+    return this.http.get('https://localhost:44335/api/ClientMasters').pipe(map(data=>data));
     
   }
 

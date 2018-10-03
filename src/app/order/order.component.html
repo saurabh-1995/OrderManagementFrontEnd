@@ -1,22 +1,67 @@
-<form [formGroup]="clientForm">
-  <label>Client-Name:</label>
-    <select formControlName="clientControl">
-      <option [ngValue]="client" *ngFor="let client of clientNameList">{{client}}</option>
-    </select>
-</form>
-<form [formGroup]="itemForm">
-  <label>Item-Name:</label>
-    <select formControlName="itemControl">
-      <option [ngValue]="item" *ngFor="let item of itemNameList">{{item}}</option>
-    </select>
-</form>
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Order-Report</h3>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label>Client-Name:</label>
+            <select formControlName="ClientName">
+              <option [ngValue]="client" *ngFor="let client of clientNameList">{{client}}</option>
+            </select>
 
-Quantity:
-<input type="number">
-<button type="button" (click)="showList()">Add</button>
-<br/>
-<button type="submit"(click)="saveDB()">Save</button>
+          </div>
+          <div class="form-group">
+            <label>Item-Name:</label>
+            <select formControlName="ItemName">
+              <option *ngFor="let item of itemNameList" [value]="item">{{item}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Quantity:</label>
+            <input type="number" formControlName="Quantity">
+          </div>
+          <div class="form-group">
+            <label>OrderDate:</label>
+            <input type="date" formControlName="OrderDate">
+          </div>
 
+          <div class="form-group">
+            <button class="btn btn-primary">Add</button>
+          </div>
 
-    
- 
+        </form>
+      </div>
+      <div class="col-md-6">
+        <table id="orders">
+          <thead>
+            <th>Client Name</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Order Date</th>
+          </thead>
+          <tbody>
+            
+          <tr *ngFor="let order of orderList">
+            <td>{{this.order.ClientName}}</td>
+            <td>{{this.order.ItemName}}</td>
+            <td>{{this.order.Quantity}}</td>
+            <td>{{this.order.OrderDate}}</td>
+            <!-- <td>{{this.order}}</td>
+            <td>{{this.order}}</td>
+            <td>{{this.order}}</td> -->
+          
+          </tr>
+       
+          </tbody>
+        </table>
+         
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit" (click)="saveDb()">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,12 +19,12 @@ export class ItemService {
     var body = JSON.stringify(item);
     console.log(body);
     
-    return this.http.post('https://localhost:44322/api/ItemMasters', body, this.httpOptions);
+    return this.http.post('https://localhost:44335/api/ItemMasters', body, this.httpOptions);
 
   }
   getItem():Observable<any>
   {
-    return this.http.get('https://localhost:44322/api/ItemMasters').pipe(map(data=>data));
+    return this.http.get('https://localhost:44335/api/ItemMasters').pipe(map(data=>data));
     
   }
 }
